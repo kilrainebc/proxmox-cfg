@@ -17,8 +17,8 @@ function clean_storage_config () {
   echo "y" | lvremove hdd/data
 
   # remove logical volumes
-  vgremove nvme
-  vgremove hdd
+  echo "y" | vgremove nvme
+  echo "y" | vgremove hdd
 
   # remove physical volumes
   echo "y" | pvremove /dev/nvme0n1
@@ -28,6 +28,7 @@ function clean_storage_config () {
   dev="/dev/sdb"
   sgdisk -Z $dev
   kpartx -u $dev 
+  clear_devmapper $dev
 
   # Unmount mountpoints
   if grep -qs '/mnt/backup' /proc/mounts; then
@@ -39,7 +40,7 @@ function clean_storage_config () {
   fi
 
   # If backups exist and are older than configs, restore them.  If backups don't exist, create them.
-  local file="/etc/fstab"
+  file="/etc/fstab"
   if [[ -f "$file.bkp" ]]; then
     if [[ $file -nt "${file}.bkp" ]]; then
       mv "$file.bkp" $file
@@ -72,7 +73,7 @@ function create_partition() {
   local partition
 
   if [[ -z $1 ]]; then
-    printf "[error] - %s - please specify a parameter for drive\\n" "${FUNCNAME[0]}" >&2
+    printf "[error] - %s - please specify a parameter for drive\n" "${FUNCNAME[0]}" >&2
     exit 64
   fi
 
