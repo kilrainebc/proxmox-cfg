@@ -30,4 +30,4 @@ if [[ $1 = "apply" ]]; then
   other_config
 fi
 
-
+2>&1
