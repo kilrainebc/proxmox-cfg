@@ -13,14 +13,15 @@ source ./lib/storage.bash
 #source ./lib/user.bash
 source ./lib/other.bash
 
-if [[ $1 -eq "uninstall" ]]; then
+if [[ $1 = "uninstall" ]]; then
   sources_undo
   uninstall_software_config
   clean_storage_config
   remove_other_config
 fi
 
-if [[ $1 -eq "install" ]]; then
+if [[ $1 = "apply" ]]; then
+  sleep 60
   sources_config
   software_config
   storage_config
@@ -29,4 +30,4 @@ if [[ $1 -eq "install" ]]; then
   other_config
 fi
 
-
+2>&1
