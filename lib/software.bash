@@ -8,6 +8,14 @@
 
 #######################################
 # Description:
+#   Uninstalls shellcheck util   
+#######################################
+function uninstall_shellcheck () {
+  rm -rf /usr/bin/shellcheck
+}
+
+#######################################
+# Description:
 #     Installs shellcheck util.
 #######################################
 function install_shellcheck () {
@@ -18,6 +26,14 @@ function install_shellcheck () {
     cp "shellcheck-${scversion}/shellcheck" /usr/bin/
     rm -rf "shellcheck-${scversion}"    
   fi
+}
+
+#######################################
+# Description:
+#   Uninstalls shfmt util   
+#######################################
+function uninstall_shfmt ()  {
+  rm -rf /usr/local/go/bin/shfmt
 }
 
 #######################################
@@ -45,6 +61,19 @@ function install_shfmt () {
 # Description:
 #     installs packages through apt
 #######################################
+function uninstall_apt_pkgs () {
+  local pkgs
+  pkgs+=' vim python python-pip'
+  pkgs+=' zsh'
+  pkgs+=' neofetch'
+  pkgs+=' incron'
+  apt-get -y --purge remove "$pkgs" 
+}
+
+#######################################
+# Description:
+#     installs packages through apt
+#######################################
 function install_apt_pkgs () {
   local pkgs
   pkgs+=' vim python python-pip'
@@ -52,6 +81,16 @@ function install_apt_pkgs () {
   pkgs+=' neofetch'
   pkgs+=' incron'
   apt-get -y install "$pkgs" 
+}
+
+#######################################
+# Description:
+#     removes installations made under software_config function
+#######################################
+function uninstall_software_config () {
+  uninstall_shellcheck
+  uninstall_shfmt
+  uninstall_apt_pkgs
 }
 
 #######################################
