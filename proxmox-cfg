@@ -13,16 +13,14 @@ source ./lib/storage.bash
 #source ./lib/user.bash
 source ./lib/other.bash
 
-if [[ $1 -eq "uninstall" ]]; then
+if [[ $1 = "uninstall" ]]; then
   sources_undo
   uninstall_software_config
   clean_storage_config
   remove_other_config
 fi
 
-if [[ $1 -eq "apply" ]]; then
-  echo "first param is $1"
-  echo -e "\n\n\n\n\n\n\n STARTING THE INSTALL FUNCTIONS!!!! \n\n\n\n\n\n\n"
+if [[ $1 = "apply" ]]; then
   sleep 60
   sources_config
   software_config
