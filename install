@@ -9,9 +9,8 @@
 source ./lib/sources.bash
 source ./lib/software.bash
 source ./lib/storage.bash
-source ./lib/proxmox.bash
-# source ./lib/network.bash
-# source ./lib/user.bash
+#source ./lib/network.bash
+#source ./lib/user.bash
 source ./lib/other.bash
 
 # Run main functions

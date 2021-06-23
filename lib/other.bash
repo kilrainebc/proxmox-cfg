@@ -15,19 +15,19 @@ function setup_pmx_noreminder () {
   local file
   file="/usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js"
   cp "$file" "$file.bkp"
-  sed -i "s/data.status !== 'Active'/false/g" "$file"
+  sed -i "s/.data.status.toLowerCase() !== 'active'/.data.status.toLowerCase() == 'active'/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
   systemctl restart pveproxy.service
   diff "$file" "$file.bkp"
 
-  file="proxmox_noreminder.sh"
-  cp $file "./scripts/$file" "/usr/local/bin/$file"
+  file="proxmox_noreminder"
+  cp "./scripts/$file" "/usr/local/bin/$file"
   chmod +x "/usr/local/bin/$file"
-
-  printf "/usr/share/javascript/proxmox-widget-toolkit/ IN_CREATE /usr/local/bin/%s $#" $file >> /tmp/incron.table-temp
+  echo "$file"
+  printf "/usr/share/javascript/proxmox-widget-toolkit/ IN_CREATE /usr/local/bin/%s \$#\n" "$file" >> /tmp/incron.table-temp
   incrontab -u root /tmp/incron.table-temp
 
-  tail -f /var/log/syslog | grep incrond
-  tail -n 30 -f /var/log/incron.log
+  tail /var/log/syslog | grep incrond
+  tail -n 30 /var/log/incron.log
   apt-get install --reinstall proxmox-widget-toolkit
 }
 

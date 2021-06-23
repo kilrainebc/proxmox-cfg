@@ -187,8 +187,7 @@ function update_storage_stanzas() {
   sed -i 's/local-lvm/ssd/g' "$file"
   sed -i 's/backup,vztmpl,iso/vztmpl,iso,snippets/g' "$file"
 
-  file="storage.cfg"
-  cp ../etc/pve/storage.cfg "$file" 
+  cp ./etc/pve/storage.cfg "$file"
 }
 
 #######################################
