@@ -13,8 +13,6 @@ source ./lib/storage.bash
 #source ./lib/user.bash
 source ./lib/other.bash
 
-2>&1
-
 if [[ $1 = "uninstall" ]]; then
   sources_undo
   uninstall_software_config
