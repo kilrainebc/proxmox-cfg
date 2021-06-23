@@ -13,6 +13,13 @@ source ./lib/storage.bash
 #source ./lib/user.bash
 source ./lib/other.bash
 
+if [[ $1 -eq "uninstall" ]]; then
+  sources_undo
+  uninstall_software_config
+  clean_storage_config
+  remove_other_config
+fi
+
 # Run main functions
 sources_config
 software_config
