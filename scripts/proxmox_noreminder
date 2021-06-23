@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+#   Author:  kilrainebc
+#   Version: 1.0
+#   Description: Script for removing Proxmox subscription reminder.
+
+if [ "$1" == "proxmoxlib.js.dpkg-tmp" ]; then
+  echo "$(date +%Y-%m-%d_%H:%M) proxmoxlib.js has been upgraded - patching file" >> /var/log/incron.log
+
+  sleep 15
+
+  cp /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js.bak
+  sed -i "s/data.status !== 'Active'/false/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js
+  systemctl restart pveproxy.service
+
+  diff /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js.bak /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js >> /var/log/incron.log
+fi

@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+#   Author:  kilrainebc
+#   Version: 1.0
+#   Description: Script to configure fresh Proxmox install 
+
+# Source functions libraries
+source ./lib/sources.bash
+source ./lib/software.bash
+source ./lib/storage.bash
+source ./lib/proxmox.bash
+# source ./lib/network.bash
+# source ./lib/user.bash
+source ./lib/other.bash
+
+# Run main functions
+sources_config
+software_config
+storage_config
+#netowrk_config
+#user_config
+other_config
