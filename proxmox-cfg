@@ -21,6 +21,9 @@ if [[ $1 -eq "uninstall" ]]; then
 fi
 
 if [[ $1 -eq "apply" ]]; then
+  echo "first param is $1"
+  echo -e "\n\n\n\n\n\n\n STARTING THE INSTALL FUNCTIONS!!!! \n\n\n\n\n\n\n"
+  sleep 60
   sources_config
   software_config
   storage_config
