@@ -83,8 +83,15 @@ Below is short breakdown of each conf file - again, look at the source code and 
 #### Executing program
 
 ```
-./proxmox-cfg
+./proxmox-cfg apply
 ```
+
+#### Uninstalling program
+
+```
+./proxmox-cfg uninstall
+```
+
 
 ## Help
 
@@ -102,7 +109,7 @@ The *storage.bash* libary contains a function *clear_devmapper* to help with thi
 ```
 source ./lib/storage.bash
 clear_devmapper <disk device file>
-./proxmox-cfg
+./proxmox-cfg apply
 ```
 
 The *create_partition* function currently has some error handling to catch this, and it is always run within the *clear_storage_config* as well, but a more robust solution is required. 
