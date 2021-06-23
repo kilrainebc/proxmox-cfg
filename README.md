@@ -52,15 +52,36 @@ tar xvzf proxmox-cfg-main.tar.gz
 cd proxmox-cfg-main
 ```
 
-### Necessary modifications needed to be made to files/folders
+#### Necessary modifications needed to be made to files/folders
 
 Special attention should be made to the *\*.bash* files in the lib dir.  Especially the following: ***storage.bash and software.bash***
 
-### Executing program
+#### Executing program
 
 ```
 ./install
 ```
+
+## Help
+
+### Storage issues
+
+Occassionally, problems arise during storage configuration.  In testing, it appears to occur when the system has stale records in devmapper.
+This error can be identified by the below errors:
+
+* ```/dev/sdb1 is apparently in use by the system; will not make a filesystem here!``` (mkfs)
+* ```mount: /mnt/backup: /dev/sdb1 already mounted or mount point busy.  ``` (mount)
+* ```Can't open /dev/sdb3 exclusively.  Mounted filesystem? ``` (sgdisk)
+
+The *storage.bash* libary contains a function *clear_devmapper* to help with this.  Simply source the file manually, call the function (with the device file of the disk passed as the argument), and re-run the install (see below).
+
+```
+source ./lib/storage.bash
+clear_devmapper /dev/sdb
+./install
+```
+
+The *create_partition* function currently has some error handling to catch this, but a more robust solution is in the works. 
 
 ## Authors
 
