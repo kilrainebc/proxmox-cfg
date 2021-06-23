@@ -187,28 +187,8 @@ function update_storage_stanzas() {
   sed -i 's/local-lvm/ssd/g' "$file"
   sed -i 's/backup,vztmpl,iso/vztmpl,iso,snippets/g' "$file"
 
-  {
-  printf "\nlvmthin: nvme
-  thinpool data
-  vgname nvme
-  content rootdir,images\n"
-
-  printf "\nlvmthin: hdd
-  thinpool data
-  vgname hdd
-  content rootdir,images\n"
-
-  printf "\ndir: backup
-  path /mnt/backup
-  prune-backups keep-all=1
-  shared 0
-  content backup\n"   
-
-  printf "\ndir: assets
-  path /mnt/assets
-  content vztmpl,iso,snippets
-  shared 0\n"
-  } >> "$file"   
+  file="storage.cfg"
+  cp ../etc/pve/storage.cfg "$file" 
 }
 
 #######################################

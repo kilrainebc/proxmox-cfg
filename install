@@ -5,6 +5,7 @@
 #   Description: Script to configure fresh Proxmox install 
 
 # Source functions libraries
+# shellcheck disable=SC1091
 source ./lib/sources.bash
 source ./lib/software.bash
 source ./lib/storage.bash

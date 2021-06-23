@@ -4,6 +4,8 @@
 #   Version: 1.0
 #   Description: Description: Function library for software tasks during Proxmox Setup
 
+# shellcheck disable=SC1091
+
 #######################################
 # Description:
 #     Installs shellcheck util.

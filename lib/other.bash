@@ -4,6 +4,8 @@
 #   Version: 1.0
 #   Description: Function library for OTHER tasks during Proxmox Setup
 
+# shellcheck disable=SC2120
+
 #######################################
 # Description:
 #   Removes Proxmox subscription reminder, and creates incron rule for application on every update.
