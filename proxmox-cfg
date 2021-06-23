@@ -20,10 +20,13 @@ if [[ $1 -eq "uninstall" ]]; then
   remove_other_config
 fi
 
-# Run main functions
-sources_config
-software_config
-storage_config
-#netowrk_config
-#user_config
-other_config
+if [[ $1 -eq "install" ]]; then
+  sources_config
+  software_config
+  storage_config
+  #netowrk_config
+  #user_config
+  other_config
+fi
+
+
