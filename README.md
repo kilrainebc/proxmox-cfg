@@ -1,4 +1,4 @@
-# Proxmox-Cfg
+# pvecfg
 
 Utility for customizing Proxmox VE nodes.  
 
@@ -21,7 +21,7 @@ This project is for customizing and configuring Proxmox VE nodes.  Running this 
     `--other.bash
   `--/scripts/                  directory for scripts       
     `--proxmox_noreminder
-  `--proxmox-cfg
+  `--pvecfg
 ```
 
 ## Getting Started
@@ -36,18 +36,18 @@ This project is for customizing and configuring Proxmox VE nodes.  Running this 
 * ##### git
 ```
 git clone https://github.com/kilrainebc/proxmox-cfg.git
-cd proxmox-cfg
+cd pvecfg
 ```
 * ##### wget
 ```
 wget -qO- https://github.com/kilrainebc/proxmox-cfg/archive/main.tar.gz | tar -xvz
-cd proxmox-cfg-main
+cd pvecfg-main
 ```
 * ##### cURL
 ```
 curl -LJOs https://github.com/kilrainebc/proxmox-cfg/archive/main.tar.gz
 tar xvzf proxmox-cfg-main.tar.gz
-cd proxmox-cfg-main
+cd pvecfg-main
 ```
 
 #### Necessary modifications needed to be made to files/folders
@@ -83,13 +83,13 @@ Below is short breakdown of each conf file - again, look at the source code and 
 #### Executing program
 
 ```
-./proxmox-cfg apply
+./pvecfg apply
 ```
 
 #### Uninstalling program
 
 ```
-./proxmox-cfg uninstall
+./pvecfg uninstall
 ```
 
 
@@ -109,7 +109,7 @@ The *storage.bash* libary contains a function *clear_devmapper* to help with thi
 ```
 source ./lib/storage.bash
 clear_devmapper <disk device file>
-./proxmox-cfg apply
+./pvecfg apply
 ```
 
 The *create_partition* function currently has some error handling to catch this, and it is always run within the *clear_storage_config* as well, but a more robust solution is required. 
