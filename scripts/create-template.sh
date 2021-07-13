@@ -265,17 +265,19 @@ function create_template_from_vm () {
   printf "%s\n\n" "$note"
 }
 
-if [[ -n $1 ]]; then
-  if [[ -f $1 ]]; then
-    source "$1"
+function main () {
+  if [[ -n $1 ]]; then
+    if [[ -f $1 ]]; then
+      source "$1"
+    fi
+  else
+    printf "No parameter passed for variables file!"
   fi
-else
-  printf "No parameter passed for variables file!"
-fi
 
+  set_defaults  
+  create_vm_from_image
+  config_cloudinit
+  create_template_from_vm
+}
 
-
-set_defaults  
-create_vm_from_image
-config_cloudinit
-create_template_from_vm
+main "$@"
