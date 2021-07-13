@@ -22,8 +22,8 @@ function config_users () {
     password=''
     printf "pvecfg: Creating user: %s \n" $user
     read -p "pvecfg: Please supply a password: " $password
-    pveum useradd $username@pam --password $password
-    pveum aclmod / -user $username@pam -role Administrator
+    pveum user add $username --password $password
+    pveum acl modify / --user $username --roles Administrator
   done
 }
 
