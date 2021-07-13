@@ -74,9 +74,9 @@ function uninstall_apt_pkgs () {
 # Description:
 #     installs packages through apt
 #######################################
-function install_apt_pkgs () {
+function install_via_apt () {
   local pkgs
-  pkgs+=' vim python python-pip'
+  pkgs+=' vim python3 python3-pip'
   pkgs+=' zsh'
   pkgs+=' neofetch'
   pkgs+=' incron'
@@ -87,7 +87,7 @@ function install_apt_pkgs () {
 # Description:
 #     removes installations made under software_config function
 #######################################
-function uninstall_software_config () {
+function uninstall_software () {
   uninstall_shellcheck
   uninstall_shfmt
   uninstall_apt_pkgs
@@ -97,9 +97,9 @@ function uninstall_software_config () {
 # Description:
 #     main install function
 #######################################
-function software_config () {
+function install_software () {
   install_shellcheck
   install_shfmt
-  install_apt_pkgs
+  install_via_apt
   # create function for dotfiles
 }

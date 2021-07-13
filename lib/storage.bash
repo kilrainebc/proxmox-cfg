@@ -214,7 +214,7 @@ function clear_devmapper() {
 # Description:
 #   Main storage function.  
 #######################################
-function storage_config() {
+function config_storage() {
   local dev
   local size
   local old_size
