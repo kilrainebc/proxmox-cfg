@@ -10,7 +10,6 @@ function config_users () {
   local users
   local user
   local admin
-  local password
 
   read -p "pvecfg: Please supply a name for a non-root administrator account: " admin  
 
@@ -21,9 +20,9 @@ function config_users () {
   for user in $users; do
     password=''
     printf "pvecfg: Creating user: %s \n" $user
-    read -p "pvecfg: Please supply a password: " password
-    pveum user add $user@pam -password $password
-    #pveum acl modify / --user $username --roles Administrator
+    pveum user add "$user"@pam 
+    pveum passwd "$user"@pam
+    pveum acl modify / --user "$user"@pam --roles Administrator
   done
 }
 
