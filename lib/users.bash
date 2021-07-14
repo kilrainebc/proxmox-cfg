@@ -21,16 +21,17 @@ function config_users () {
     for user in $users; do
       pveum user delete $user@pam
     done
-    exit 64
   fi
 
-  for user in $users; do
-    password=''
-    printf "pvecfg: Creating user: %s \n" $user
-    pveum user add $user@pam 
-    pveum passwd $user@pam
-    pveum acl modify / --user $user@pam --roles Administrator
-  done
+  if [[ $1 == "create" ]]; then
+    for user in $users; do
+      password=''
+      printf "pvecfg: Creating user: %s \n" $user
+      pveum user add $user@pam 
+      pveum passwd $user@pam
+      pveum acl modify / --user $user@pam --roles Administrator
+    done
+  fi
 }
 
 
