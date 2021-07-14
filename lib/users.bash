@@ -17,12 +17,19 @@ function config_users () {
   users+=" $admin"
   users+=' packer terraform ansible'
 
+  if [[ $1 == "delete" ]]; then
+    for user in $users; do
+      pveum user delete $user@pam
+    done
+    exit 64
+  fi
+
   for user in $users; do
     password=''
     printf "pvecfg: Creating user: %s \n" $user
-    pveum user add "$user"@pam 
-    pveum passwd "$user"@pam
-    pveum acl modify / --user "$user"@pam --roles Administrator
+    pveum user add $user@pam 
+    pveum passwd $user@pam
+    pveum acl modify / --user $user@pam --roles Administrator
   done
 }
 
