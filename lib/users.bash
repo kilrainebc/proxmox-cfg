@@ -21,9 +21,9 @@ function config_users () {
   for user in $users; do
     password=''
     printf "pvecfg: Creating user: %s \n" $user
-    read -p "pvecfg: Please supply a password: " $password
-    pveum user add $username --password $password
-    pveum acl modify / --user $username --roles Administrator
+    read -p "pvecfg: Please supply a password: " password
+    pveum user add $username@pam -password $password
+    #pveum acl modify / --user $username --roles Administrator
   done
 }
 
